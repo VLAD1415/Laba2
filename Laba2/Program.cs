@@ -12,6 +12,9 @@ namespace Laba2
         {
             int a = 10;
             Console.WriteLine(a);
+
+            string bo = "Приветули";
+            Console.WriteLine(bo);
         }
     }
 }
