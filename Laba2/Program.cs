@@ -46,10 +46,10 @@ namespace Laba2
             ulong ulg = 478584848484444;
             Console.WriteLine(ulg);
 
-            float fl = 2.56565656F;
+            float fl = 2.56565656f;
             Console.WriteLine(fl);
 
-            double df = 1.644545544544554545545455;
+            double df = -1.644545544544554545545455;
             Console.WriteLine(df);
 
             decimal de;
@@ -104,7 +104,7 @@ namespace Laba2
 
             int? nub = null;
             int? nub2 = 100;
-            Console.WriteLine(nub.HasValue);
+            Console.WriteLine(nub.Value);
             Console.WriteLine(nub2.Value);
             //Types(f)
             /*
@@ -121,6 +121,12 @@ namespace Laba2
             Console.WriteLine(String.Concat(str1, " ", str2));// Обьединение двух строк сп2
             string str4 = String.Copy(str3);// копирование строки
             Console.WriteLine(str4);
+
+            // Сравнение строк
+            Console.WriteLine(String.Compare(str2, str3));// 1 способ
+            Console.WriteLine(String.Compare(str2, "Vladislav"));
+            Console.WriteLine(str2.Equals("Vladislav")); // 2 способ
+            Console.WriteLine(str2 == "Vladisla");// 3 способ
 
             int stIndex = 8, length = 4;
 
@@ -140,7 +146,7 @@ namespace Laba2
             Console.WriteLine(str3.Remove(4, 3));
 
             //Интерполяция строк(пример)
-            int x = 100, y = 5;
+            string x ="Hellow" , y = " World";
             Console.WriteLine($"{x}+{y}={x + y}");
             //Strings(c)
             string nst1 = "helllo";
@@ -230,58 +236,69 @@ namespace Laba2
             Console.WriteLine(kort1);//Целиком
             Console.WriteLine($"Выведем 1й,3й и 5й элементы:  {kort1.Item1}, {kort1.Item3}, {kort1.Item5}");//Выборочно
 //Кортежи(c)
-            (int, string, char, string, ulong) kort2 = ((int, string, char, string, ulong))kort1;// Распаковка кортежа??
+             // Распаковка кортежа в переменные
+            var pk = kort1.Item1;
+            var pk1 = kort1.Item2;
+            var pk2 = kort1.Item3;
+            var pk3 = kort1.Item4;
+            var pk4 = kort1.Item5;
+            Console.WriteLine(pk);
+            Console.WriteLine(pk1);
+            Console.WriteLine(pk2);
+            Console.WriteLine(pk3);
+            Console.WriteLine(pk4);
 
+//Кортежи(d) сравнение двух кортежей
+            (int, string) kort2 = (10, "Privet");
+            Console.WriteLine(kort1.Equals(kort2));
 
-            Func<int[], string, Tuple<int, int, int, char>> fun = (arr, strrr) => arr.Aggregate(Tuple.Create(Int32.MinValue, Int32.MaxValue, 0, strrr[0]), (y1, x1) => Tuple.Create(Math.Max(y1.Item1, x), Math.Min(y1.Item2, x1), y1.Item3 + x1, y1.Item4));
-            Console.WriteLine(fun(new int[] { 1, -2, 3, -4, 5, -6, 7, -8, 9, 0 }, "Takoe"));
+            //Local Function
+            Console.WriteLine("\nЗадание 5");
+            int[] massiv = { 11, 22, 33, 44 };
+
+            (int, int, int, char) zad5(int[] arrA, string strA)
+            {
+                int max, min, sum = 0;
+                min = max = arrA[0];
+                foreach (int i in arrA)
+                {
+                    if (i < min)
+                    {
+                        min = i;
+                    }
+                }
+                foreach (int i in arrA)
+                {
+                    if (i > max)
+                    {
+                        max = i;
+                    }
+                }
+                foreach (int i in arrA)
+                {
+                    sum += i;
+                }
+                (int, int, int, char) TupleB = (max, min, sum, strA[0]);
+                return TupleB;
+            }
+
+            Console.WriteLine(zad5(massiv, "Water"));
 
             void checkedFunction()
             {
-                int che = checked(int.MaxValue);
+                int ch1 = checked(int.MaxValue);
             }
 
             void uncheckedFunction()
             {
-                int unche = checked(int.MinValue);
+                int unch = checked(int.MinValue);
 
             }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
 
         }
     }
-}
+
